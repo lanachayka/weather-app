@@ -1,29 +1,46 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchWeaherData = createAsyncThunk('weather/fetchWeaherData',
-    async function () {
-        navigator.geolocation.getCurrentPosition( async function (position) {
-            const response = await fetch(`$api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=069a15542effbc5992ff749a5547a952`);
+export const fetchWeatherData = createAsyncThunk('weather/fetchWeatherData',
+    async function (_, { rejectWithValue }) {
+        try {
+            const response = await fetch('http://api.weatherapi.com/v1/current.json?key=0730661e7d8f491886875906220602&q=London&aqi=no');
+
+            if (!response.ok) {
+                throw new Error('Server Error!');
+            }
+
             const data = await response.json();
-            return data
-        });
+            return data;
+
+        }
+        catch (error) {
+            return rejectWithValue(error.message);
+        }
     }
 );
+
+const setError = (state, action) => {
+    state.status = 'rejected';
+    state.error = action.payload;
+};
 
 const weatherSlice = createSlice({
     name: 'weatherSlice',
     initialState: {
         weatherData: [],
-        status: null
+        status: null,
+        error: null
     },
     extraReducers: {
-        [fetchWeaherData.pending]: (state) => {
+        [fetchWeatherData.pending]: (state) => {
             state.status = 'Loading';
+            state.error = null;
         },
-        [fetchWeaherData.fulfilled]: (state, action) => {
+        [fetchWeatherData.fulfilled]: (state, action) => {
             state.status = 'resolved';
             state.weatherData = action.payload;
-        }
+        },
+        [fetchWeatherData.rejected]: setError,
     }
 });
 
