@@ -13,11 +13,11 @@ function App() {
   }, [dispatch]);
 
   if (status === 'Loading') {
-    return <h1>Loading</h1>
+    return <div className="App"><h1>Loading...</h1></div>
   }
 
   if (error) {
-    return <h2>An error occured {error}</h2>
+    return <div className="App"><h2>An error occured {error}</h2></div>
   }
 
   if (weatherData.location && weatherData.current) {
