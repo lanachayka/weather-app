@@ -19,28 +19,26 @@ export const fetchWeatherData = createAsyncThunk('weather/fetchWeatherData',
     }
 );
 
-const setError = (state, action) => {
-    state.status = 'rejected';
-    state.error = action.payload;
-};
-
 const weatherSlice = createSlice({
     name: 'weatherSlice',
     initialState: {
         weatherData: [],
-        status: null,
-        error: null
+        weatherStatus: null,
+        weatherError: null
     },
     extraReducers: {
         [fetchWeatherData.pending]: (state) => {
-            state.status = 'Loading';
-            state.error = null;
+            state.weatherStatus = 'Loading';
+            state.weatherError = null;
         },
         [fetchWeatherData.fulfilled]: (state, action) => {
-            state.status = 'resolved';
+            state.weatherStatus = 'resolved';
             state.weatherData = action.payload;
         },
-        [fetchWeatherData.rejected]: setError,
+        [fetchWeatherData.rejected]: (state, action) => {
+            state.weatherStatus = 'rejected';
+            state.weatherError = action.payload;
+        }
     }
 });
 
