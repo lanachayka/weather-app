@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchWeatherData } from './store/weatherSlice';
 import Header from './components/Header/Header';
+import WeatherToday from './components/WeatherToday/WeatherToday';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function App() {
     return (
       <div className="App">
         <Header />
+        <WeatherToday />
       </div>
     );
   }

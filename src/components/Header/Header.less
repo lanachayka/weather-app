@@ -1,4 +1,10 @@
 .header{
-  font-size: large;
-  text-shadow: 1px 1px 2px @detailColor;
+  & .title{
+    font-size: 60px;
+    .textShadow(@detailColor);
+    text-transform: uppercase;
+    padding-inline: 20px;
+    border-bottom: 2px solid @detailColor;
+    text-align: center;
+  }
 }

@@ -1,0 +1,25 @@
+.weatherToday{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    text-align: center;
+    & .temperature{
+        margin-top: -30px;
+        font-size: 40px; 
+        .textShadow(@detailColor);
+        span{
+            color: @detailColor;
+            .textShadow(@textColor);
+        }
+    }
+    & .title{
+        font-size: 50px;
+        text-transform: uppercase;
+        .textShadow(@detailColor);
+    }
+    & .icon{
+        min-width: 100px;
+        min-height: 100px;
+    }
+}
