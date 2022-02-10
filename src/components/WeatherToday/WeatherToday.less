@@ -2,19 +2,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 0.5px;
     margin: 0;
     text-align: center;
     & .temperature{
-        margin-top: -30px;
-        font-size: 40px; 
+        margin-bottom: 0;
+        font-size: 35px; 
         .textShadow(@detailColor);
+        p{
+            margin-top: 0px;
+        }
         span{
             color: @detailColor;
             .textShadow(@textColor);
         }
     }
     & .title{
-        font-size: 50px;
+        font-size: 40px;
         text-transform: uppercase;
         .textShadow(@detailColor);
     }
