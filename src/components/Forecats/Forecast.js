@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux"
+import ForecastItem from "../ForecastItem/ForecastItem";
 import { filterDate } from "./helper";
 
 export default function Forecast() {
@@ -10,11 +11,11 @@ export default function Forecast() {
                 time.time.slice(8, 10),
             ))
                 .map(time => (
-                    <div key={time.time_epoch}>
-                        <p>{time.time.slice(10, time.time.length - 3)}</p>
-                        <p>{time.condition.text}</p>
-                        <img src={time.condition.icon} alt={time.condition.text} />
-                    </div>
+                    <ForecastItem
+                        key={time.time_epoch}
+                        time={time.time}
+                        condition={time.condition}
+                    />
                 )))
             }
         </div>
