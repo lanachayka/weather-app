@@ -1,0 +1,29 @@
+//Vars
+@bgColor: #b8cee5;
+@textColor:#ffffff;
+@detailColor:#315f81;
+
+//Mixin
+.textShadow(@color){
+    text-shadow: 1px 1px 2px @color;
+}
+
+//Imports
+@import url(./App.less);
+@import url(./components/Header/Header.less);
+@import url(./components/WeatherToday/WeatherToday.less);
+@import url(./components/Forecats/Forecast.less);
+@import url(./components/ForecastItem/ForecastItem.less);
+
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: @bgColor;
+  color: @textColor;
+  font-family: 'Dancing Script', cursive;
+}
